@@ -44,7 +44,7 @@ bool verificador(string code){
 string formadorDepalavra(int tamanho){
     int n1, n2;
     string aux, codigo = "", palavra = "";
-    cout << "Digite o(s) código(s)(Um por vez): " << endl; 
+    cout << "\nDigite o(s) código(s)(Um por vez): " << endl; 
     for(int i = 0; i < tamanho; i++){     
         cin >> codigo;
         if(verificador(codigo) == true){
@@ -76,6 +76,7 @@ string formadorDepalavra(int tamanho){
             i--;
         }
     }
+    cout << "\nPalavra: " << endl;
     return palavra;
 }
 
@@ -92,7 +93,7 @@ void inicio(){
     cout << " se encontra\n1: O numero de vezes que a tecla é apertada." << endl;
     cout << "\nTeclas: " << endl;
     cout << "\t2.(a, b, c)\n\t3.(d, e, f)\n\t4.(g, h, i)\n\t5.(j, k, l)\n\t6.(m, n, o)\n\t7.(p, q, r, s)\n\t8.(t, u, v)" << endl;
-    cout << "\t9.(w, x, y, z)";
+    cout << "\t9.(w, x, y, z)" << endl;
 
     cout << "\nDigite o tamanho da palavra/quantidade de teclas para começar:" << endl;
     cin >> tamanhoPalavra;
@@ -102,13 +103,13 @@ void inicio(){
         if (tamanhoPalavra == 0){
             cin.clear();
             cin.ignore(10000, '\n');
-            cout << "Tente de novo";
+            cout << "Tente de novo" << endl;
             cin >> tamanhoPalavra;
         }else{
             start = false;
         }
     }
-    cout << formadorDepalavra(tamanhoPalavra) << endl;
+    cout << formadorDepalavra(tamanhoPalavra) << "\n" << endl;
 
     //Comando para retornar ao menu (função main), ou sair do programa.
     cout << "Digite 1 para voltar ao menu ou qualquer coisa para sair do programa" << endl;
