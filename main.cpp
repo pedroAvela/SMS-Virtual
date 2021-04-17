@@ -39,44 +39,47 @@ int main() {
     int mestre, n1, n2;
     string aux, codigo = "", palavra = "";
     cin >> mestre;
-    if (mestre == 0){
-        cout << "Escreve direito filha da puta";
-    }
-
-    for(int i = 0; i < mestre; i++){
-        cin >> codigo;
-        if(verificador(codigo) == true){
-            aux = codigo[1];
-            n1 = stoi(aux) - 2;
-
-            //Essa parte permite que o usuário aperte o "botão" mais vezes
-            //Como exemplo caso o usuário escolha o numero 2 e no código peça para apertar 4
-            //Vezes, ao invés de ocasionar um bug por ser um numero maior que o tamanho do vector,
-            //Irá simplesmente fazer que ele volte para o inicio, ou seja, se ele colocar 4 irá para
-            //letra "a" de novo, 5 ira para a "b" e assim por diante, deixando a experiência mais
-            //parecida com um celular da época.
-            //Inicio
-            aux = "";
-            for (int n = 3; n < codigo.length(); n++){
-                aux += codigo[n];
-            }
-            n2 = stoi(aux) - 1;
-            if (n1 != 5 and n1 != 7){
-                n2 %= 3;
-            }else{
-                n2 %= 4;
-            }
-            //Fim
-
-            palavra += texto[n1][n2];    
-        }else{
-            cout << "código invalido";
-            palavra = "";
-            break;
-        }
-        
-    }
+    if (mestre != 0){
     
-    cout << palavra;
+    
+
+        for(int i = 0; i < mestre; i++){
+            cin >> codigo;
+            if(verificador(codigo) == true){
+                aux = codigo[1];
+                n1 = stoi(aux) - 2;
+
+                //Essa parte permite que o usuário aperte o "botão" mais vezes
+                //Como exemplo caso o usuário escolha o numero 2 e no código peça para apertar 4
+                //Vezes, ao invés de ocasionar um bug por ser um numero maior que o tamanho do vector,
+                //Irá simplesmente fazer que ele volte para o inicio, ou seja, se ele colocar 4 irá para
+                //letra "a" de novo, 5 ira para a "b" e assim por diante, deixando a experiência mais
+                //parecida com um celular da época.
+                //Inicio
+                aux = "";
+                for (int n = 3; n < codigo.length(); n++){
+                    aux += codigo[n];
+                }
+                n2 = stoi(aux) - 1;
+                if (n1 != 5 and n1 != 7){
+                    n2 %= 3;
+                }else{
+                    n2 %= 4;
+                }
+                //Fim
+
+                palavra += texto[n1][n2];    
+            }else{
+                cout << "código invalido";
+                palavra = "";
+                break;
+            }
+            
+        }
+    
+        cout << palavra;
+    }else{
+        cout << "Tamanho da palavra inválido";
+    }
 
     }
