@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//Vector que armazena as letras, cada item do vector grande "texto"
+//representa o número do botão do celular, ou seja, são vetores que possuem as letras.
 vector < vector<char> > texto{ {'a', 'b', 'c'}, //Letras do numero 2 - item 0 no vector
                             {'d', 'e', 'f'}, //Letras do numero 3 - item 1 no vector
                             {'g', 'h', 'i'}, //Letras do numero 4 - item 2 no vector
@@ -14,14 +16,21 @@ vector < vector<char> > texto{ {'a', 'b', 'c'}, //Letras do numero 2 - item 0 no
                             {'w', 'x', 'y', 'z'} //Letras do numero 9 - item 7 no vector
                         }; 
 
+
+
+bool verificador(string code){
+    if (code[0] == '#' and code[2] == '='){
+        return true;
+    }
+}
+
 int main() {
     int mestre, n1, n2;
-    string aux;
-    string codigo = "";
-    string palavra = "";
+    string aux, codigo = "", palavra = "";
     cin >> mestre;
     for(int i = 0; i < mestre; i++){
         cin >> codigo;
+        cout << verificador(codigo) << endl;
         aux = codigo[1];
         n1 = stoi(aux) - 2;
         aux = codigo[3];
