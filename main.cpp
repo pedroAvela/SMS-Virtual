@@ -84,6 +84,10 @@ void inicio(){
     cout << "antecendido por um '#', depois coloque um '='\ne o numero de vezes que";
     cout << "você deseja apertar aquela tecla. Ex: para a letra 'a' #2=1 sendo:\n2: O numero onde a letra";
     cout << " se encontra\n1: O numero de vezes que a tecla é apertada." << endl;
+    cout << "\nTeclas: " << endl;
+    cout << "\t2.(a, b, c)\n\t3.(d, e, f)\n\t4.(g, h, i)\n\t5.(j, k, l)\n\t6.(m, n, o)\n\t7.(p, q, r, s)\n\t8.(t, u, v)" << endl;
+    cout << "\t9.(w, x, y, z)";
+
     cout << "\nDigite o tamanho da palavra para começar:" << endl;
     cin >> tamanhoPalavra;
     while (start == true){
@@ -120,5 +124,5 @@ int main() {
         }
         cout << "\033[2J\033[1;1H";
     }
-    start = true;
+    return 0;
 }
