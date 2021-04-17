@@ -21,6 +21,8 @@ vector < vector<char> > texto{ {'a', 'b', 'c'}, //Letras do numero 2 - item 0 no
 bool verificador(string code){
     if (code[0] == '#' and code[2] == '='){
         return true;
+    }else{
+        return false;
     }
 }
 
@@ -30,12 +32,35 @@ int main() {
     cin >> mestre;
     for(int i = 0; i < mestre; i++){
         cin >> codigo;
-        cout << verificador(codigo) << endl;
-        aux = codigo[1];
-        n1 = stoi(aux) - 2;
-        aux = codigo[3];
-        n2 = stoi(aux) - 1;
-        palavra += texto[n1][n2];
+        if(verificador(codigo) == true){
+            aux = codigo[1];
+            n1 = stoi(aux) - 2;
+
+            //Essa parte permite que o usuário aperte o "botão" mais vezes
+            //Como exemplo caso o usuário escolha o numero 2 e no código peça para apertar 4
+            //Vezes, ao invés de ocasionar um bug por ser um numero maior que o tamanho do vector,
+            //Irá simplesmente fazer que ele volte para o inicio, ou seja, se ele colocar 4 irá para
+            //letra "a" de novo, 5 ira para a "b" e assim por diante, deixando a experiência mais
+            //parecida com um celular da época.
+            //Inicio
+            aux = "";
+            for (int n = 3; n < codigo.length(); n++){
+                aux += codigo[n];
+            }
+            n2 = stoi(aux) - 1;
+            if (n1 != 5 and n1 != 7){
+                n2 %= 3;
+            }else{
+                n2 %= 4;
+            }
+            //Fim
+
+            palavra += texto[n1][n2];    
+        }else{
+            cout << "código invalido";
+            break;
+        }
+        
     }
     
     cout << palavra;
