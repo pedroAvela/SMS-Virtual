@@ -20,7 +20,16 @@ vector < vector<char> > texto{ {'a', 'b', 'c'}, //Letras do numero 2 - item 0 no
 
 bool verificador(string code){
     if (code[0] == '#' and code[2] == '='){
-        return true;
+        if ((code[1] >= 50) and (code[1] <= 57)){
+            for (int i = 3; i < code.length(); i++){
+                if ((code[i] < 49) or (code[i] > 57)){
+                    return false;
+                }
+            }
+            return true;
+        }else{
+            return false;
+        } 
     }else{
         return false;
     }
@@ -30,6 +39,10 @@ int main() {
     int mestre, n1, n2;
     string aux, codigo = "", palavra = "";
     cin >> mestre;
+    if (mestre == 0){
+        cout << "Escreve direito filha da puta";
+    }
+
     for(int i = 0; i < mestre; i++){
         cin >> codigo;
         if(verificador(codigo) == true){
@@ -58,6 +71,7 @@ int main() {
             palavra += texto[n1][n2];    
         }else{
             cout << "código invalido";
+            palavra = "";
             break;
         }
         
