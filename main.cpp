@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -18,11 +19,12 @@ vector < vector<char> > texto{ {'a', 'b', 'c'}, //Letras do numero 2 - item 0 no
 
 
 
+
 bool verificador(string code){
     if (code[0] == '#' and code[2] == '='){
         if ((code[1] >= 50) and (code[1] <= 57)){
             for (int i = 3; i < code.length(); i++){
-                if ((code[i] < 49) or (code[i] > 57)){
+                if ((code[i] < 48) or (code[i] > 57)){
                     return false;
                 }
             }
@@ -37,7 +39,8 @@ bool verificador(string code){
 
 string formadorDepalavra(int tamanho){
     int n1, n2;
-    string aux, codigo = "", palavra = ""; 
+    string aux, codigo = "", palavra = "";
+    cout << "Digite o(s) código(s)(Um por vez): " << endl; 
     for(int i = 0; i < tamanho; i++){     
         cin >> codigo;
         if(verificador(codigo) == true){
@@ -72,13 +75,50 @@ string formadorDepalavra(int tamanho){
     return palavra;
 }
 
-int main() {
-    int tamanhoPalavra;
-    string palavra = "";
+void inicio(){
+    int tamanhoPalavra, n;
+    bool start = true;
+    cout << "\033[2J\033[1;1H";
+    cout << "Para utilizar o SMS virtual, primeiro você deve escrever o tamanho da palavra que quer, depois " << endl;
+    cout << "digite o número onde sua letra se encontra ";
+    cout << "antecendido por um '#', depois coloque um '='\ne o numero de vezes que";
+    cout << "você deseja apertar aquela tecla. Ex: para a letra 'a' #2=1 sendo:\n2: O numero onde a letra";
+    cout << " se encontra\n1: O numero de vezes que a tecla é apertada." << endl;
+    cout << "\nDigite o tamanho da palavra para começar:" << endl;
     cin >> tamanhoPalavra;
-    if (tamanhoPalavra != 0){
-        cout << formadorDepalavra(tamanhoPalavra);
-    }else{
-        cout << "Tamanho da palavra inválido";
+    while (start == true){
+        if (tamanhoPalavra == 0){
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Tente de novo";
+            cin >> tamanhoPalavra;
+        }else{
+            start = false;
+        }
     }
+    cout << formadorDepalavra(tamanhoPalavra) << endl;
+    cout << "Digite 1 para voltar ao menu ou qualquer coisa para sair do programa" << endl;
+    cin >> n;
+    if (n == 1){
+        return;
+    }else{
+        exit(1);
+    }
+}
+
+int main() {
+    bool start = true;
+    int comandoMenu = 0;
+    while (start == true){
+        cout << "digite 1 para iniciar ou 0 para sair:\n";
+        cin >> comandoMenu;
+        switch(comandoMenu){
+            case 1: inicio();
+            break;
+            case 0: start = false;
+            break;
+        }
+        cout << "\033[2J\033[1;1H";
+    }
+    start = true;
 }
